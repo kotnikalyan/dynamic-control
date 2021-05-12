@@ -45,8 +45,8 @@ export class AddFormComponent implements OnInit {
   // contact formgroup
   createContact(): FormGroup {
     return this.fb.group({
-      type: ['email', Validators.compose([Validators.required])], // i.e Email, Phone
-      value: [null, Validators.compose([Validators.required, Validators.email])]
+      type: ['', Validators.compose([Validators.required])], // i.e Email, Phone
+      value: [null, Validators.compose([Validators.required])]
     });
   }
 
@@ -70,7 +70,7 @@ export class AddFormComponent implements OnInit {
     } else {
       validators = Validators.compose([
         Validators.required,
-        Validators.pattern(new RegExp('^\\+[0-9]?()[0-9](\\d[0-9]{9})$')) // pattern for validating international phone number
+        Validators.pattern(new RegExp('^\\+[0-9]{10})$')) // pattern for validating international phone number
       ]);
     }
 
