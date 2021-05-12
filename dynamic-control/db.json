@@ -1,0 +1,26 @@
+{
+  "posts": [
+    {
+      "name": "hbhh",
+      "organization": null,
+      "contacts": [
+        {
+          "type": "email",
+          "value": "koot@hh.n"
+        }
+      ],
+      "id": 2
+    },
+    {
+      "name": "kotni",
+      "organization": "dssd",
+      "contacts": [
+        {
+          "type": "email",
+          "value": "dfgfgd@gami.com"
+        }
+      ],
+      "id": 3
+    }
+  ]
+}

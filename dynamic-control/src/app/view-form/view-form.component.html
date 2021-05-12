@@ -1,0 +1,8 @@
+<div class="contaner">
+    <div *ngFor="let user of userditeles;">
+        <div class="row"> Name : {{user.name}}</div>
+        <div class="row"> organization : {{user.organization}}</div>
+        <div class="row" *ngFor="let phone of user.contacts" > {{phone.type}} : {{phone.value}}</div>
+    </div>    
+</div>
+
