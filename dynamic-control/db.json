@@ -1,26 +1,53 @@
 {
   "posts": [
     {
-      "name": "hbhh",
-      "organization": null,
+      "name": "ui",
+      "organization": "uiio",
       "contacts": [
         {
           "type": "email",
-          "value": "koot@hh.n"
+          "name": null,
+          "value": "iiooo9oi@gmail.com"
+        },
+        {
+          "type": "phone",
+          "name": null,
+          "value": "3232322332"
         }
       ],
-      "id": 2
+      "id": 1
     },
     {
       "name": "kotni",
-      "organization": "dssd",
+      "organization": "infa",
       "contacts": [
         {
+          "type": "phone",
+          "name": null,
+          "value": "7823742"
+        },
+        {
           "type": "email",
-          "value": "dfgfgd@gami.com"
+          "name": null,
+          "value": "kaly@gmail.com"
+        },
+        {
+          "type": "phone",
+          "name": null,
+          "value": "69530703575"
+        },
+        {
+          "type": "email",
+          "name": null,
+          "value": "kornt@gmail.com"
+        },
+        {
+          "type": "phone",
+          "name": null,
+          "value": "8877909"
         }
       ],
-      "id": 3
+      "id": 2
     }
   ]
 }

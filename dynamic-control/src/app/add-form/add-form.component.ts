@@ -10,7 +10,7 @@ import { EmployeeService } from '../employee.service';
 })
 export class AddFormComponent implements OnInit {
 
-  public form!: FormGroup; 
+  public form!: FormGroup;
   public contactList!: FormArray;
   id!: string;
   isAddMode!: boolean;
@@ -23,7 +23,8 @@ export class AddFormComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder, private empServoce: EmployeeService, private route: ActivatedRoute,
-    private router: Router,) {}
+    private router: Router,) { }
+
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id']
@@ -34,19 +35,20 @@ export class AddFormComponent implements OnInit {
       contacts: this.fb.array([this.createContact()])
     });
 
-    // set contactlist to this field
-    // this.contactList = this.form.get('contacts') as FormArray;
     if (!this.isAddMode) {
       this.empServoce.getById(this.id)
           .subscribe(x => this.form.patchValue(x));
   }
+    // set contactlist to this field
+    this.contactList = this.form.get('contacts') as FormArray;
   }
 
   // contact formgroup
   createContact(): FormGroup {
     return this.fb.group({
-      type: ['', Validators.compose([Validators.required])], // i.e Email, Phone
-      value: [null, Validators.compose([Validators.required])]
+      type: ['email', Validators.compose([Validators.required])], // i.e Email, Phone
+      name: [, Validators.compose([Validators.required])], // i.e. Home, Office
+      value: [null, Validators.compose([Validators.required, Validators.email])]
     });
   }
 
@@ -62,15 +64,15 @@ export class AddFormComponent implements OnInit {
   }
 
   // triggered to change validation of value field type
-  changedFieldType(index: any) {
+  changedFieldType(index: number) {
     let validators = null;
 
-    if (this.getContactsFormGroup(index).value === 'email') {
+    if (this.getContactsFormGroup(index).controls['type'].value === 'email') {
       validators = Validators.compose([Validators.required, Validators.email]);
     } else {
       validators = Validators.compose([
         Validators.required,
-        Validators.pattern(new RegExp('^\\+[0-9]{10})$')) // pattern for validating international phone number
+       
       ]);
     }
 
@@ -82,7 +84,7 @@ export class AddFormComponent implements OnInit {
   }
 
   // get the formgroup under contacts form array
-  getContactsFormGroup(index:  number): FormGroup {
+  getContactsFormGroup(index: number): FormGroup {
     // this.contactList = this.form.get('contacts') as FormArray;
     const formGroup = this.contactList.controls[index] as FormGroup;
     return formGroup;
@@ -92,34 +94,32 @@ export class AddFormComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     // stop here if form is invalid
-    if (this.form.invalid) {
-        return;
-    }
+    // if (this.form.invalid) {
+    //   return;
+    // }
 
     if (this.isAddMode) {
-        this.createUser();
+      this.createUser();
     } else {
-        this.updateUser();
+      this.updateUser();
     }
-}
-createUser() {
-  this.empServoce.create(this.form.value)
+  }
+  createUser() {
+    this.empServoce.create(this.form.value)
       .subscribe((data) => {
         alert("Submit Data")
         // this.alertService.success('User added', { keepAfterRouteChange: true });
         this.router.navigate(['../'], { relativeTo: this.route });
       })
     // .add(() => this.loading = false)
-}
+  }
 
-updateUser() {
-  this.empServoce.update(this.id, this.form.value)
+  updateUser() {
+    this.empServoce.update(this.id, this.form.value)
       .subscribe(() => {
         alert("update  Data")
         // this.alertService.success('User added', { keepAfterRouteChange: true });
         this.router.navigate(['/list'], { relativeTo: this.route });
       })
-}
- 
-
+  }
 }

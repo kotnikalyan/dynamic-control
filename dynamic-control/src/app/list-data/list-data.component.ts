@@ -10,7 +10,7 @@ export class ListDataComponent implements OnInit {
   users!: any;
   parentdata: any;
   constructor(private empServoce: EmployeeService) { }
-
+  user!: any;
   ngOnInit(): void {
     this.empServoce.getAll()
       .subscribe(users => this.users = users);
@@ -24,8 +24,7 @@ export class ListDataComponent implements OnInit {
   }
   viewUser(id: string) {
     this.empServoce.getById(id)
-      .subscribe(() => this.users = this.users.filter((x: { id: string; }) => x.id !== id));
-    console.log(this.users);
+    .subscribe(() => this.users = this.users.filter((x: { id: string; }) => x.id !== id));
     this.parentdata = this.users;
   }
 

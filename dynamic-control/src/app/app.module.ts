@@ -7,7 +7,7 @@ import { AddFormComponent } from './add-form/add-form.component';
 import { ViewFormComponent } from './view-form/view-form.component';
 import { ListDataComponent } from './list-data/list-data.component';
 import { UpdateDataComponent } from './update-data/update-data.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
@@ -19,7 +19,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     UpdateDataComponent
   ],
   imports: [
-    BrowserModule, ReactiveFormsModule,
+    BrowserModule, ReactiveFormsModule, FormsModule,
     AppRoutingModule, HttpClientModule,
   ],
   providers: [],
